@@ -1,5 +1,7 @@
-[server]
-port = 8080
+# Let this be default for cloud deployment
+# but uncomment if local
+# [server]
+# port = 8080
 
 [browser]
 gatherUsageStats = false

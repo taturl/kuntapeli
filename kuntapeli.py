@@ -21,8 +21,12 @@ if 'fg' not in st.session_state:
 
 def check_guess():
     prompt = st.session_state.prompt.casefold().capitalize()
-    names = [kunta['properties']['Name'] for kunta in KUNTARAJAT]
-    if prompt in names:
+    names_fi = [kunta['properties']['Name'] for kunta in KUNTARAJAT]
+    names_sv = [kunta['properties']['NameSV'] for kunta in KUNTARAJAT if 'NameSV' in kunta['properties']]
+    if prompt in names_sv:
+        prompt = next(kunta['properties']['Name'] for kunta in KUNTARAJAT if kunta['properties'].get('NameSV') == prompt)
+
+    if prompt in names_fi:
         if prompt in st.session_state.correct_guesses:
             st.write(prompt, '...on kunta ja kirjoitit sen jo :-)', )
         else:

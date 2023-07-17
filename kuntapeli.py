@@ -1,9 +1,9 @@
+import json
 import folium
 import streamlit as st
-
 from streamlit_folium import st_folium
 from shapely.geometry import shape
-import json
+
 
 @st.cache_data
 def load_geojson_to_memory():
@@ -55,20 +55,6 @@ m = folium.Map(
 )
 
 def style_function(x): return {'fillOpacity': 0, 'weight': 0.1}
-
-# folium.GeoJson(
-#     'Kuntarajat.geojson',
-#     name='geojson',
-#     style_function=style_function
-# ).add_to(m)
-
-# if len(st.session_state.correct_guesses) >= len(fg):
-#     prompt = st.session_state.prompt.casefold().capitalize()
-#     kunta = next(kunta for kunta in KUNTARAJAT if kunta['properties']['Name'] == prompt)
-#     kunta_geo = shape(kunta["geometry"])
-#     fg.add_child( 
-#         folium.GeoJson(kunta_geo, tooltip=prompt)
-#     )
 
 out = st_folium(
     m,
